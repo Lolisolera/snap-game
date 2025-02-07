@@ -4,7 +4,7 @@
 
 Class: Card
      * Properties:
-         * suit (String) → "♥", "♣", "♦", "♠"
+         * suit (String) → "♥", "♣", "♦", "♠" 
          * symbol (String) → "2", "3", ..., "J", "Q", "K", "A"
          * value (int) → 2-14 (numeric mapping of symbols)
      * Methods:
