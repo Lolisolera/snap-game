@@ -2,7 +2,7 @@
 
 ## Stage 1: Creating the Deck of Cards
 
-Class: Card
+Class: Card  (representing individual cards)
      * Properties:
          * suit (String) → "♥", "♣", "♦", "♠" 
          * symbol (String) → "2", "3", ..., "J", "Q", "K", "A"
@@ -10,7 +10,7 @@ Class: Card
      * Methods:
          * toString(): Returns a string representation of the card.
 
-Class: CardGame
+Class: CardGame (creates a deck)
      * Properties:
          * deckOfCards (ArrayList of Card objects)
          * name (String) → Name of the game
