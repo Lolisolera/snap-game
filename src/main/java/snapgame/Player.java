@@ -41,15 +41,5 @@ public class Player {
         return response.equalsIgnoreCase("Snap");
     }
 
-
-
-
-
-
-
-
-
-
-
 }
 

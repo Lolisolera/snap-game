@@ -17,7 +17,7 @@ public class Main {
             System.out.println(card);
         }
 
-        // Shuffle the deck
+
         cardGame.shuffleDeck();
         System.out.println("\nShuffled Deck:");
         for (Card card : deck) {
@@ -31,7 +31,7 @@ public class Main {
             System.out.println(card);
         }
 
-        // Sort deck into suits
+
         cardGame.sortDeckIntoSuits();
         System.out.println("\nDeck Sorted by Suits:");
         for (Card card : deck) {
@@ -43,8 +43,12 @@ public class Main {
         String playSnap = scanner.nextLine().trim().toLowerCase();
 
         if (playSnap.equals("yes")) {
-            // Create a Snap game instance and play
-            Snap snapGame = new Snap("Snap Game");
+            // Create Player objects
+            Player player1 = new Player("Player 1");
+            Player player2 = new Player("Player 2");
+
+            // Create a Snap game instance for two players
+            Snap snapGame = new Snap("Snap Game", player1, player2);
 
             // Shuffle the deck before starting the Snap game
             snapGame.shuffleDeck();
