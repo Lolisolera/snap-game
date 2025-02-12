@@ -19,13 +19,12 @@ public class CardGame {
         int[] values = {2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14};
 
         for (String suit : suits) {
-            for (int i = 0; i < symbols.length; i++) {
-                deckOfCards.add(new Card(suit, symbols[i], values[i]));
+            for (int j = 0; j < symbols.length; j++) {
+                deckOfCards.add(new Card(suit, symbols[j], values[j]));
             }
         }
     }
 
-    // Public getter for deckOfCards
     public ArrayList<Card> getDeckOfCards() {
         return deckOfCards;
     }
