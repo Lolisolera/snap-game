@@ -26,7 +26,6 @@ public class Snap extends CardGame {
 
             if (lastCard != null && lastCard.getRank().equals(currentCard.getRank())) {
                 if (snapRound()) {
-                    System.out.println(currentPlayer.getName() + " wins the game!");
                     return;
                 }
             }

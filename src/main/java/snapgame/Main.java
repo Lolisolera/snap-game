@@ -40,6 +40,11 @@ public class Main {
         System.out.println("\nWould you like to play Snap? (yes/no)");
         String playSnap = scanner.nextLine().trim().toLowerCase();
 
+        while (!playSnap.equals("yes") && !playSnap.equals("no")) {
+            System.out.println("Invalid input. Please enter 'yes' or 'no'.");
+            playSnap = scanner.nextLine().trim().toLowerCase();
+        }
+
         if (playSnap.equals("yes")) {
             Player player1 = new Player("Player 1");
             Player player2 = new Player("Player 2");

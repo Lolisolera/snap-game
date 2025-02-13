@@ -49,7 +49,7 @@ public class Player {
 
         if (response.equals("snap")) {
             snapDetected[0] = true;
-            System.out.println(this.getName() + " wins!");
+            System.out.println(this.getName() + " wins the game!");
             return true;
         } else {
             System.out.println("Incorrect input! Moving on...");
