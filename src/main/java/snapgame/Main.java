@@ -7,6 +7,8 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
+        System.out.println("Hello, welcome to Lola' Snap Game!");
+
 
         CardGame cardGame = new CardGame("Standard Card Game");
         ArrayList<Card> deck = cardGame.getDeckOfCards();
@@ -37,17 +39,35 @@ public class Main {
         }
 
 
-        System.out.println("\nWould you like to play Snap? (yes/no)");
-        String playSnap = scanner.nextLine().trim().toLowerCase();
-
-        while (!playSnap.equals("yes") && !playSnap.equals("no")) {
-            System.out.println("Invalid input. Please enter 'yes' or 'no'.");
+        String playSnap = "";
+        while (true) {
+            System.out.println("\nWould you like to play? (yes/no)");
             playSnap = scanner.nextLine().trim().toLowerCase();
-        }
 
+            if (playSnap.equals("yes") || playSnap.equals("no")) {
+                break;
+            } else {
+                System.out.println("Invalid input. Please enter 'yes' or 'no'.");
+            }
+        }
         if (playSnap.equals("yes")) {
-            Player player1 = new Player("Player 1");
-            Player player2 = new Player("Player 2");
+            System.out.println("\nPlayer 1 - Please enter your name:");
+            String player1Name = scanner.nextLine().trim();
+
+            if (player1Name.isEmpty()) {
+                player1Name = "Player 1";
+            }
+
+            System.out.println("\nPlayer 2 - Please enter your name (or press Enter to use default 'Player 2'):");
+            String player2Name = scanner.nextLine().trim();
+
+            if (player2Name.isEmpty()) {
+                player2Name = "Player 2";
+            }
+
+
+            Player player1 = new Player(player1Name);
+            Player player2 = new Player(player2Name);
 
 
             Snap snapGame = new Snap("Snap Game", player1, player2, scanner);
