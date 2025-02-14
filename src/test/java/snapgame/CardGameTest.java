@@ -42,8 +42,8 @@ public class CardGameTest {
     @Test
     public void testSortDeckIntoSuits() {
         CardGame cardGame = new CardGame("Snap Game");
-        cardGame.shuffleDeck(); // Shuffle the deck first to simulate unsorted state
-        cardGame.sortDeckIntoSuits(); // Sort the deck by suits and values
+        cardGame.shuffleDeck();
+        cardGame.sortDeckIntoSuits();
 
         // Check if the deck is sorted by suits, then by value
         ArrayList<Card> deck = cardGame.getDeck();
@@ -66,6 +66,44 @@ public class CardGameTest {
 
         // Ensure that the deck order has changed after shuffling
         assertNotEquals(originalDeck, cardGame.getDeck(), "Deck was not shuffled.");
+    }
+
+    @Test
+    public void testDeckInitialisation() {
+        CardGame cardGame = new CardGame("Snap Game");
+        ArrayList<Card> deck = cardGame.getDeck();
+
+        // Ensure that all cards have different suit-symbol combinations
+        for (int i = 0; i < deck.size(); i++) {
+            for (int j = i + 1; j < deck.size(); j++) {
+                assertNotEquals(deck.get(i), deck.get(j), "Deck should not have duplicate cards.");
+            }
+        }
+    }
+
+    @Test
+    public void testDealCardReducesDeckSize() {
+        CardGame cardGame = new CardGame("Snap Game");
+        int initialDeckSize = cardGame.getDeck().size();
+
+        cardGame.dealCard(); // Deal one card
+        int newDeckSize = cardGame.getDeck().size();
+
+        assertEquals(initialDeckSize - 1, newDeckSize, "Deck size should decrease by 1 after dealing a card.");
+    }
+
+
+    @Test
+    public void testDealCardFromEmptyDeck() {
+        CardGame cardGame = new CardGame("Snap Game");
+
+        // Deal all cards from the deck
+        for (int i = 0; i < 52; i++) {
+            cardGame.dealCard();
+        }
+
+        Card dealtCard = cardGame.dealCard();
+        assertNull(dealtCard, "Deck should be empty, and dealCard should return null.");
     }
 
 
