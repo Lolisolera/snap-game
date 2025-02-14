@@ -7,12 +7,10 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Hello, welcome to Lola' Snap Game!");
-
+        System.out.println("Hello, welcome to Lola's Snap Game!");
 
         CardGame cardGame = new CardGame("Standard Card Game");
         ArrayList<Card> deck = cardGame.getDeckOfCards();
-
 
         System.out.println("Deck of cards:");
         for (Card card : deck) {
@@ -24,7 +22,6 @@ public class Main {
         for (Card card : deck) {
             System.out.println(card);
         }
-
 
         cardGame.sortDeckInNumberOrder();
         System.out.println("\nDeck Sorted by Number Order:");
@@ -38,7 +35,6 @@ public class Main {
             System.out.println(card);
         }
 
-
         String playSnap = "";
         while (true) {
             System.out.println("\nWould you like to play? (yes/no)");
@@ -50,33 +46,66 @@ public class Main {
                 System.out.println("Invalid input. Please enter 'yes' or 'no'.");
             }
         }
+
         if (playSnap.equals("yes")) {
-            System.out.println("\nPlayer 1 - Please enter your name:");
-            String player1Name = scanner.nextLine().trim();
 
-            if (player1Name.isEmpty()) {
-                player1Name = "Player 1";
-            }
+            String player1Name = getValidName(scanner, "Player 1");
 
-            System.out.println("\nPlayer 2 - Please enter your name (or press Enter to use default 'Player 2'):");
-            String player2Name = scanner.nextLine().trim();
 
-            if (player2Name.isEmpty()) {
-                player2Name = "Player 2";
-            }
+            String player2Name = getValidName(scanner, "Player 2");
 
 
             Player player1 = new Player(player1Name);
             Player player2 = new Player(player2Name);
 
 
-            Snap snapGame = new Snap("Snap Game", player1, player2, scanner);
+            System.out.println("\n" + player1Name + " , press ENTER to shuffle the cards.");
+            scanner.nextLine();
+
+            cardGame.shuffleDeck();
+            System.out.println("\nShuffled Deck:");
+            for (Card card : deck) {
+                System.out.println(card);
+            }
+
+
+            System.out.println("\n" + player2Name + ", press ENTER to deal the first card.");
+            scanner.nextLine();
+
+            Card firstCard = cardGame.dealCard();
+            System.out.println(player2Name + " dealt: " + firstCard);
+
+            Snap snapGame = new Snap("Snap Game", player2, player1,scanner,firstCard);
             snapGame.shuffleDeck();
             snapGame.playGame();
-        } else {
+        }else{
             System.out.println("Exiting program. Goodbye!");
         }
 
         scanner.close();
+    }
+
+
+    public static String getValidName(Scanner scanner, String player) {
+        String name = "";
+        boolean valid = false;
+
+        // Regular expression to allow letters, numbers, spaces, and common symbols
+        String regex = "^[a-zA-Z0-9_\\- ]+$";
+
+        while (!valid) {
+            System.out.println("\n" + player + " - Please enter your name:");
+            name = scanner.nextLine().trim();
+
+            if (name.isEmpty()) {
+                System.out.println("Name cannot be empty. Please enter a valid name.");
+            } else if (!name.matches(regex)) {
+                System.out.println("Invalid characters in name. Please use only letters, numbers, spaces, dashes, or underscores.");
+            } else {
+                valid = true;
+            }
+        }
+
+        return name;
     }
 }

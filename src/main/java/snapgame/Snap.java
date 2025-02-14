@@ -8,37 +8,47 @@ public class Snap extends CardGame {
     private Player opponent;
     private Scanner scanner;
 
-
-    public Snap(String name, Player player1, Player player2, Scanner scanner) {
+    public Snap(String name, Player player1, Player player2, Scanner scanner, Card firstCard) {
         super(name);
         this.currentPlayer = player1;
         this.opponent = player2;
         this.scanner = scanner;
+        this.lastCard = firstCard;
     }
 
     public void playGame() {
-        while (!getDeckOfCards().isEmpty()) {
-            System.out.println("\n" + currentPlayer.getName() + ", press ENTER to deal a card.");
-            scanner.nextLine();
 
+
+
+        // Deal first card and store it
+       // lastCard = dealCard();
+        //System.out.println(opponent.getName() + " dealt: " + lastCard);
+
+        // Start alternating turns
+        while (!getDeckOfCards().isEmpty()) {
+            swapPlayers(); // Swap turns
+
+            System.out.println(currentPlayer.getName() + ", press ENTER to deal a card.");
+            scanner.nextLine(); // Wait for current player to press ENTER
+
+            // Deal next card
             Card currentCard = dealCard();
             System.out.println(currentPlayer.getName() + " dealt: " + currentCard);
 
+            // Check for Snap
             if (lastCard != null && lastCard.getRank().equals(currentCard.getRank())) {
                 if (snapRound()) {
-                    return;
+                    return; // End game if snap is called
                 }
             }
 
-            lastCard = currentCard;
-            swapPlayers();
+            lastCard = currentCard; // Update last dealt card
         }
 
         System.out.println("Game over! No more cards left.");
     }
 
     private boolean snapRound() {
-
         return currentPlayer.callSnap(scanner);
     }
 
@@ -48,3 +58,4 @@ public class Snap extends CardGame {
         opponent = temp;
     }
 }
+
