@@ -9,7 +9,7 @@ public class Main {
 
         System.out.println("Hello, welcome to Lola's Snap Game!");
 
-        CardGame cardGame = new CardGame("Standard Card Game");
+        CardGame cardGame = new CardGame("Lola's Card Game");
         ArrayList<Card> deck = cardGame.getDeckOfCards();
 
         System.out.println("Deck of cards:");

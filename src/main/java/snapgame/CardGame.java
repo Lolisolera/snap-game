@@ -29,7 +29,7 @@ public class CardGame {
         return deckOfCards;
     }
 
-    // Deal the top card from the deck
+
     public Card dealCard() {
         if (!deckOfCards.isEmpty()) {
             return deckOfCards.removeFirst();
@@ -37,12 +37,12 @@ public class CardGame {
         return null; // Deck is empty
     }
 
-    // Sort deck in number order
+
     public void sortDeckInNumberOrder() {
         deckOfCards.sort(Comparator.comparingInt(Card::getValue));
     }
 
-    // Sort deck into suits, then by value within suits
+
     public void sortDeckIntoSuits() {
         deckOfCards.sort(Comparator.comparing(Card::getSuit).thenComparing(Card::getValue));
     }

@@ -18,15 +18,9 @@ public class Snap extends CardGame {
 
     public void playGame() {
 
-
-
-        // Deal first card and store it
-       // lastCard = dealCard();
-        //System.out.println(opponent.getName() + " dealt: " + lastCard);
-
         // Start alternating turns
         while (!getDeckOfCards().isEmpty()) {
-            swapPlayers(); // Swap turns
+            swapPlayers();
 
             System.out.println(currentPlayer.getName() + ", press ENTER to deal a card.");
             scanner.nextLine(); // Wait for current player to press ENTER
@@ -42,7 +36,7 @@ public class Snap extends CardGame {
                 }
             }
 
-            lastCard = currentCard; // Update last dealt card
+            lastCard = currentCard;
         }
 
         System.out.println("Game over! No more cards left.");

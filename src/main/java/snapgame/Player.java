@@ -30,24 +30,26 @@ public class Player {
         final boolean[] snapDetected = {false};
         Timer timer = new Timer();
 
-
         timer.schedule(new TimerTask() {
             @Override
             public void run() {
                 if (!snapDetected[0]) {
                     System.out.println("Too slow! No snap detected. Moving on...");
                     snapDetected[0] = true;
+                    timer.cancel();  // Stop the timer properly
                 }
             }
         }, 2000);
 
         System.out.println(this.getName() + ", type 'snap' within 2 seconds to win!");
 
-
         String response = scanner.nextLine().trim().toLowerCase();
-        timer.cancel();
 
-        if (response.equals("snap")) {
+        if (snapDetected[0]) {
+            return false;  // Ignore input after timeout
+        }
+
+        else if (response.equals("snap")) {
             snapDetected[0] = true;
             System.out.println(this.getName() + " wins the game!");
             return true;
@@ -56,4 +58,5 @@ public class Player {
             return false;
         }
     }
+
 }
