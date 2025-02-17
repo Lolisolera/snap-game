@@ -6,13 +6,11 @@ import java.util.Comparator;
 public class CardGame {
     private final ArrayList<Card> deckOfCards;
 
-    // Constructor to initialize the game name and create the deck of cards
     public CardGame(String name) {
         this.deckOfCards = new ArrayList<>();
         createDeck();
     }
 
-    // Method to create the deck of 52 cards
     private void createDeck() {
         String[] suits = {"♥", "♣", "♦", "♠"};
         String[] symbols = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
@@ -47,7 +45,6 @@ public class CardGame {
         deckOfCards.sort(Comparator.comparing(Card::getSuit).thenComparing(Card::getValue));
     }
 
-    // Shuffle the deck
     public void shuffleDeck() {
         Collections.shuffle(deckOfCards);
     }

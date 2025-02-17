@@ -18,14 +18,13 @@ public class Snap extends CardGame {
 
     public void playGame() {
 
-        // Start alternating turns
         while (!getDeckOfCards().isEmpty()) {
             swapPlayers();
 
             System.out.println(currentPlayer.getName() + ", press ENTER to deal a card.");
-            scanner.nextLine(); // Wait for current player to press ENTER
+            scanner.nextLine();
 
-            // Deal next card
+
             Card currentCard = dealCard();
             System.out.println(currentPlayer.getName() + " dealt: " + currentCard);
 
